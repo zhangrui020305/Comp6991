@@ -46,7 +46,9 @@ fn compute_tribonacci(
         let next = tribs[i - 1] + tribs[i - 2] + tribs[i - 3];
         tribs.push(next);
     }
-    println!("Values: {:?}", tribs);
+    let sum: u64 = tribs.iter().sum();
+    println!("Values: {:?}\n", tribs);
+    println!("Sum: {}", sum);
 
     Ok(())
 }
