@@ -7,9 +7,6 @@ fn main() {
 
     let pattern = &pattern_string;
 
-    // TODO: Replace the following with your code:
-    println!("The command-line argument is: {pattern}");
-
     let stdin = io::stdin();
     for line in stdin.lock().lines() {
         match line {

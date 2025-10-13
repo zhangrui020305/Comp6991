@@ -10,15 +10,13 @@ fn main() -> io::Result<()> {
 
     let mut unique_students: HashSet<String> = HashSet::new();
     let mut course_students: HashMap<String, HashSet<String>> = HashMap::new();
-
-    let mut wam_sum = 0.0;
-    let mut wam_count = 0usize;
+    let mut student_wams: HashMap<String, f64> = HashMap::new();
 
     for line in reader.lines() {
         let line = line?;
         let fields: Vec<&str> = line.split('|').collect();
         if fields.len() < 9 {
-            continue; // skip bad rows
+            continue;
         }
 
         let course = fields[0].to_string();
@@ -30,16 +28,13 @@ fn main() -> io::Result<()> {
         course_students
             .entry(course)
             .or_insert_with(HashSet::new)
-            .insert(student);
+            .insert(student.clone());
 
-        wam_sum += wam;
-        wam_count += 1;
+        student_wams.insert(student, wam);
     }
 
-    // Unique students
-    println!("Unique students: {}", unique_students.len());
+    println!("Number of students: {}", unique_students.len());
 
-    // Most/least common course
     let mut most_course = None;
     let mut least_course = None;
 
@@ -64,8 +59,8 @@ fn main() -> io::Result<()> {
         println!("Least common course: {} with {} students", c, n);
     }
 
-    // Average WAM
-    let avg_wam = wam_sum / wam_count as f64;
+    let total_wam: f64 = student_wams.values().sum();
+    let avg_wam = total_wam / student_wams.len() as f64;
     println!("Average WAM: {:.2}", avg_wam);
 
     Ok(())

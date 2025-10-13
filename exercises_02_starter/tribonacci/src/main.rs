@@ -37,7 +37,7 @@ fn compute_tribonacci(
         return Ok(());
     }
 
-    let mut tribs: Vec<u64> = Vec::new();
+    let mut tribs: Vec<u128> = Vec::new();
     tribs.push(1);
     if n > 1 { tribs.push(1); }
     if n > 2 { tribs.push(1); }
@@ -46,7 +46,7 @@ fn compute_tribonacci(
         let next = tribs[i - 1] + tribs[i - 2] + tribs[i - 3];
         tribs.push(next);
     }
-    let sum: u64 = tribs.iter().sum();
+    let sum: u128 = tribs.iter().sum();
     println!("Values: {:?}\n", tribs);
     println!("Sum: {}", sum);
 

@@ -5,7 +5,7 @@ fn main() {
     let max_name_len = 100;
     let mut name = String::new();
 
-    io::stdout().flush().unwrap(); // flush prompt
+    io::stdout().flush().unwrap();
 
     io::stdin()
         .read_line(&mut name)
@@ -19,7 +19,7 @@ fn main() {
 
     if name.is_empty() {
         println!("No name entered :(, goodbye.");
-        std::process::exit(1); // exit with code 1
+        std::process::exit(1);
     } else {
         println!("Hello, {}, nice to meet you!", name);
     }
