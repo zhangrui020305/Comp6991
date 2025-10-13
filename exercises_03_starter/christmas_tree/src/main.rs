@@ -59,13 +59,13 @@ fn main() {
                     if (*current).left.is_none() {
                         (*current).left = Some(Box::new(Light::new(0)));
                     }
-                    current = &mut *(*current).left.as_mut().unwrap();
+                    current = &mut **(*current).left.as_mut().unwrap() as *mut Light;
                 }
                 Instruction::Right => {
                     if (*current).right.is_none() {
                         (*current).right = Some(Box::new(Light::new(0)));
                     }
-                    current = &mut *(*current).right.as_mut().unwrap();
+                    current = &mut **(*current).right.as_mut().unwrap() as *mut Light;
                 }
                 Instruction::Reset => {
                     current = &mut *root;
