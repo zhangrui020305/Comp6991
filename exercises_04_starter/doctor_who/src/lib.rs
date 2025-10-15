@@ -17,8 +17,8 @@ const ALPHABET_SIZE: i32 = 26;
 /// 
 /// # Examples
 /// ```
-/// use doctor_who:caesar_shift;
-/// let lines = vec!["abc".toSting()];
+/// use doctor_who::caesar_shift;
+/// let lines = vec!["abc".to_string()];
 /// let result = caesar_shift(Some(2), lines);
 /// assert_eq!(result, vec!["cde"]);
 /// ```
