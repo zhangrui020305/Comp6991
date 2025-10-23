@@ -1,0 +1,11 @@
+/Users/zhangrui/Desktop/25T3/COMP6991/exercises_05_starter/dungeons_and_dragons/target/debug/deps/getrandom-653f18278aa43fcb.d: /Users/zhangrui/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/getrandom-0.2.7/src/lib.rs /Users/zhangrui/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/getrandom-0.2.7/src/error.rs /Users/zhangrui/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/getrandom-0.2.7/src/util.rs /Users/zhangrui/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/getrandom-0.2.7/src/error_impls.rs /Users/zhangrui/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/getrandom-0.2.7/src/util_libc.rs /Users/zhangrui/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/getrandom-0.2.7/src/use_file.rs /Users/zhangrui/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/getrandom-0.2.7/src/macos.rs
+
+/Users/zhangrui/Desktop/25T3/COMP6991/exercises_05_starter/dungeons_and_dragons/target/debug/deps/libgetrandom-653f18278aa43fcb.rmeta: /Users/zhangrui/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/getrandom-0.2.7/src/lib.rs /Users/zhangrui/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/getrandom-0.2.7/src/error.rs /Users/zhangrui/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/getrandom-0.2.7/src/util.rs /Users/zhangrui/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/getrandom-0.2.7/src/error_impls.rs /Users/zhangrui/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/getrandom-0.2.7/src/util_libc.rs /Users/zhangrui/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/getrandom-0.2.7/src/use_file.rs /Users/zhangrui/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/getrandom-0.2.7/src/macos.rs
+
+/Users/zhangrui/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/getrandom-0.2.7/src/lib.rs:
+/Users/zhangrui/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/getrandom-0.2.7/src/error.rs:
+/Users/zhangrui/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/getrandom-0.2.7/src/util.rs:
+/Users/zhangrui/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/getrandom-0.2.7/src/error_impls.rs:
+/Users/zhangrui/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/getrandom-0.2.7/src/util_libc.rs:
+/Users/zhangrui/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/getrandom-0.2.7/src/use_file.rs:
+/Users/zhangrui/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/getrandom-0.2.7/src/macos.rs:

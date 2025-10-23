@@ -1,0 +1,1 @@
+/Users/zhangrui/Desktop/25T3/COMP6991/exercises_05_starter/dungeons_and_dragons/target/debug/dungeons_and_dragons: /Users/zhangrui/Desktop/25T3/COMP6991/exercises_05_starter/dungeons_and_dragons/src/die.rs /Users/zhangrui/Desktop/25T3/COMP6991/exercises_05_starter/dungeons_and_dragons/src/main.rs
