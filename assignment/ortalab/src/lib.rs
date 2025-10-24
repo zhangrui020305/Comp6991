@@ -23,7 +23,10 @@ pub fn calculate_score(round: &Round) -> (Chips, Mult) {
     let mut total_chips: Chips = base_chips;
     let mut card_additive_mult: Mult = base_mult; 
     let mut joker_additive_mult: Mult = 0.0; 
-    let mut multiplicative_mult: Mult = 1.0;
+    
+    // (修复: 拆分了 card_multiplicative_mult 和 joker_multiplicative_mult)
+    let mut card_multiplicative_mult: Mult = 1.0;
+    let mut joker_multiplicative_mult: Mult = 1.0;
 
     // --- (遍历计分卡牌 - Stage 2 逻辑) ---
     for card in &scoring_cards {
@@ -34,7 +37,8 @@ pub fn calculate_score(round: &Round) -> (Chips, Mult) {
             match enhancement {
                 Enhancement::Bonus => total_chips += 30.0,
                 Enhancement::Mult => card_additive_mult += 4.0, 
-                Enhancement::Glass => multiplicative_mult *= 2.0,
+                // (修复: 加到 card_multiplicative_mult)
+                Enhancement::Glass => card_multiplicative_mult *= 2.0,
                 _ => {} 
             }
         }
@@ -44,7 +48,8 @@ pub fn calculate_score(round: &Round) -> (Chips, Mult) {
             match edition {
                 Edition::Foil => total_chips += 50.0,
                 Edition::Holographic => card_additive_mult += 10.0, 
-                Edition::Polychrome => multiplicative_mult *= 1.5,
+                // (修复: 加到 card_multiplicative_mult)
+                Edition::Polychrome => card_multiplicative_mult *= 1.5,
                 _ => {}
             }
         }
@@ -53,7 +58,8 @@ pub fn calculate_score(round: &Round) -> (Chips, Mult) {
     // --- (遍历手牌 - Stage 2 逻辑) ---
     for card in &round.cards_held_in_hand {
         if let Some(Enhancement::Steel) = card.enhancement {
-            multiplicative_mult *= 1.5;
+            // (修复: 加到 card_multiplicative_mult)
+            card_multiplicative_mult *= 1.5;
         }
     }
     
@@ -70,17 +76,16 @@ pub fn calculate_score(round: &Round) -> (Chips, Mult) {
     // --- (循环遍历小丑牌) ---
     for joker_card in &round.jokers {
         
-        // (*** 新增逻辑: 处理 Joker 的 Edition ***)
-        // 这个加成与 Joker 自身的效果是分开计算的
+        // (处理 Joker 的 Edition)
         if let Some(edition) = joker_card.edition {
             match edition {
                 Edition::Foil => total_chips += 50.0,
                 Edition::Holographic => joker_additive_mult += 10.0,
-                Edition::Polychrome => multiplicative_mult *= 1.5,
-                _ => {} // 忽略其他可能的 Edition
+                // (修复: 加到 joker_multiplicative_mult)
+                Edition::Polychrome => joker_multiplicative_mult *= 1.5,
+                _ => {}
             }
         }
-        // (*** 结束新增逻辑 ***)
 
         // (处理 Joker 自身的效果)
         match joker_card.joker {
@@ -106,7 +111,9 @@ pub fn calculate_score(round: &Round) -> (Chips, Mult) {
     }
     
     // --- 最终计算 (应用正确的计分公式) ---
-    let final_mult = (card_additive_mult * multiplicative_mult) + joker_additive_mult;
+    let final_mult = (
+        (card_additive_mult * card_multiplicative_mult) + joker_additive_mult
+    ) * joker_multiplicative_mult;
     
     (total_chips, final_mult)
 }
