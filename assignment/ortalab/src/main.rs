@@ -6,8 +6,8 @@ use std::{
 };
 
 use clap::Parser;
+use ortalab::calculate_score;
 use ortalib::{Chips, Mult, Round};
-use ortalib::calculate_score;
 
 #[derive(Parser)]
 struct Opts {
@@ -40,5 +40,5 @@ fn parse_round(opts: &Opts) -> Result<Round, Box<dyn Error>> {
 }
 
 fn score(round: Round) -> (Chips, Mult) {
-    calculate_score(round)
+    calculate_score(&round)
 }

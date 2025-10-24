@@ -1,7 +1,7 @@
 // src/stage1_hand.rs
 
-use ortalib::{Card, PokerHand, Rank, Suit};
 use itertools::Itertools;
+use ortalib::{Card, PokerHand, Rank, Suit};
 use std::collections::HashMap;
 
 /// ------------------------------------------------------------------
@@ -37,12 +37,12 @@ fn is_straight(sorted_ranks: &[u8]) -> bool {
     if sorted_ranks.len() != 5 {
         return false;
     }
-    
+
     // 检查 A-2-3-4-5 (在我们的 ordinal 中是 [2, 3, 4, 5, 14])
     if sorted_ranks == [2, 3, 4, 5, 14] {
         return true;
     }
-    
+
     // 检查普通顺子 (e.g., [6, 7, 8, 9, 10])
     sorted_ranks.windows(2).all(|w| w[1] == w[0] + 1)
 }
@@ -67,10 +67,10 @@ pub fn identify_hand(cards: &[Card]) -> (PokerHand, Vec<Card>) {
     }
 
     // --- 1. 预计算 ---
-    
+
     // 按 Rank 分组并计数 (e.g., {Rank::Ten: 3, Rank::Ace: 1, Rank::Two: 1})
     let rank_counts: HashMap<Rank, usize> = cards.iter().map(|c| c.rank).counts();
-    
+
     // 按 Suit 分组并计数 (e.g., {Suit::Hearts: 5})
     let suit_counts: HashMap<Suit, usize> = cards.iter().map(|c| c.suit).counts();
 
@@ -110,7 +110,7 @@ pub fn identify_hand(cards: &[Card]) -> (PokerHand, Vec<Card>) {
     // Four of a Kind
     if counts == [4, 1] {
         // 找到那个 count 为 4 的 Rank
-        let (rank, _) = rank_counts.iter().find(|(_, &c)| c == 4).unwrap();
+        let (rank, _) = rank_counts.iter().find(|&(_, &c)| c == 4).unwrap();
         let scoring_cards = cards.iter().filter(|c| c.rank == *rank).cloned().collect();
         return (PokerHand::FourOfAKind, scoring_cards);
     }
@@ -133,7 +133,7 @@ pub fn identify_hand(cards: &[Card]) -> (PokerHand, Vec<Card>) {
     // Three of a Kind
     if counts == [3, 1, 1] {
         // 找到那个 count 为 3 的 Rank
-        let (rank, _) = rank_counts.iter().find(|(_, &c)| c == 3).unwrap();
+        let (rank, _) = rank_counts.iter().find(|&(_, &c)| c == 3).unwrap();
         let scoring_cards = cards.iter().filter(|c| c.rank == *rank).cloned().collect();
         // 这匹配了示例：只有 3 张 10 计分
         return (PokerHand::ThreeOfAKind, scoring_cards);
@@ -157,7 +157,7 @@ pub fn identify_hand(cards: &[Card]) -> (PokerHand, Vec<Card>) {
     // Pair
     if counts == [2, 1, 1, 1] {
         // 找到那个 count 为 2 的 Rank
-        let (rank, _) = rank_counts.iter().find(|(_, &c)| c == 2).unwrap();
+        let (rank, _) = rank_counts.iter().find(|&(_, &c)| c == 2).unwrap();
         let scoring_cards = cards.iter().filter(|c| c.rank == *rank).cloned().collect();
         return (PokerHand::Pair, scoring_cards);
     }
