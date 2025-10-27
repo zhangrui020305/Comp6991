@@ -6,9 +6,18 @@ use std::collections::HashSet;
 // 帮助函数 (从 stage1 复制) 来获取点数
 fn get_rank_ordinal(rank: Rank) -> u8 {
     match rank {
-        Rank::Ace => 14, Rank::King => 13, Rank::Queen => 12, Rank::Jack => 11,
-        Rank::Ten => 10, Rank::Nine => 9, Rank::Eight => 8, Rank::Seven => 7,
-        Rank::Six => 6, Rank::Five => 5, Rank::Four => 4, Rank::Three => 3,
+        Rank::Ace => 14,
+        Rank::King => 13,
+        Rank::Queen => 12,
+        Rank::Jack => 11,
+        Rank::Ten => 10,
+        Rank::Nine => 9,
+        Rank::Eight => 8,
+        Rank::Seven => 7,
+        Rank::Six => 6,
+        Rank::Five => 5,
+        Rank::Four => 4,
+        Rank::Three => 3,
         Rank::Two => 2,
     }
 }

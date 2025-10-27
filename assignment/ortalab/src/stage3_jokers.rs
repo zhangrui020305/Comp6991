@@ -1,7 +1,7 @@
 // src/stage3_jokers.rs
 
-use ortalib::{Card, Enhancement, Rank, Suit};
 use itertools::Itertools;
+use ortalib::{Card, Enhancement, Rank, Suit};
 use std::collections::HashMap;
 
 // --- 内部帮助函数 (从 stage1_hand.rs 复制而来) ---
@@ -9,25 +9,37 @@ use std::collections::HashMap;
 
 fn get_rank_ordinal(rank: Rank) -> u8 {
     match rank {
-        Rank::Ace => 14, Rank::King => 13, Rank::Queen => 12, Rank::Jack => 11,
-        Rank::Ten => 10, Rank::Nine => 9, Rank::Eight => 8, Rank::Seven => 7,
-        Rank::Six => 6, Rank::Five => 5, Rank::Four => 4, Rank::Three => 3,
+        Rank::Ace => 14,
+        Rank::King => 13,
+        Rank::Queen => 12,
+        Rank::Jack => 11,
+        Rank::Ten => 10,
+        Rank::Nine => 9,
+        Rank::Eight => 8,
+        Rank::Seven => 7,
+        Rank::Six => 6,
+        Rank::Five => 5,
+        Rank::Four => 4,
+        Rank::Three => 3,
         Rank::Two => 2,
     }
 }
 
 fn is_straight(sorted_ranks: &[u8]) -> bool {
-    if sorted_ranks.len() < 5 { return false; } // Joker 检查可以用于少于5张牌的情况
-    
+    if sorted_ranks.len() < 5 {
+        return false;
+    } // Joker 检查可以用于少于5张牌的情况
+
     // 检查 A-2-3-4-5
-    if sorted_ranks.contains(&2) &&
-       sorted_ranks.contains(&3) &&
-       sorted_ranks.contains(&4) &&
-       sorted_ranks.contains(&5) &&
-       sorted_ranks.contains(&14) {
+    if sorted_ranks.contains(&2)
+        && sorted_ranks.contains(&3)
+        && sorted_ranks.contains(&4)
+        && sorted_ranks.contains(&5)
+        && sorted_ranks.contains(&14)
+    {
         return true;
     }
-    
+
     // 检查普通顺子
     // 我们只关心是否存在5张连续的牌
     for window in sorted_ranks.windows(5) {
@@ -43,7 +55,11 @@ fn check_flush(cards: &[Card]) -> bool {
     let non_wild_suits: Vec<Suit> = cards
         .iter()
         .filter_map(|c| {
-            if c.enhancement == Some(Enhancement::Wild) { None } else { Some(c.suit) }
+            if c.enhancement == Some(Enhancement::Wild) {
+                None
+            } else {
+                Some(c.suit)
+            }
         })
         .collect();
 
@@ -78,7 +94,9 @@ pub fn contains_two_pair(cards: &[Card]) -> bool {
 
 /// 检查牌组是否包含 "顺子" (Straight)
 pub fn contains_straight(cards: &[Card]) -> bool {
-    if cards.len() < 5 { return false; }
+    if cards.len() < 5 {
+        return false;
+    }
     let mut sorted_ordinals: Vec<u8> = cards
         .iter()
         .map(|c| get_rank_ordinal(c.rank))
@@ -90,6 +108,8 @@ pub fn contains_straight(cards: &[Card]) -> bool {
 
 /// 检查牌组是否包含 "同花" (Flush)
 pub fn contains_flush(cards: &[Card]) -> bool {
-    if cards.len() < 5 { return false; }
+    if cards.len() < 5 {
+        return false;
+    }
     check_flush(cards)
 }

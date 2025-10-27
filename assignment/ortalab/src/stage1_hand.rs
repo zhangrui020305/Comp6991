@@ -40,12 +40,12 @@ fn is_straight(sorted_ranks: &[u8]) -> bool {
     if sorted_ranks.len() != 5 {
         return false;
     }
-    
+
     // 检查 A-2-3-4-5 (在我们的 ordinal 中是 [2, 3, 4, 5, 14])
     if sorted_ranks == [2, 3, 4, 5, 14] {
         return true;
     }
-    
+
     // 检查普通顺子 (e.g., [6, 7, 8, 9, 10])
     sorted_ranks.windows(2).all(|w| w[1] == w[0] + 1)
 }
@@ -70,10 +70,10 @@ pub fn identify_hand(cards: &[Card]) -> (PokerHand, Vec<Card>) {
     }
 
     // --- 1. 预计算 ---
-    
+
     // 按 Rank 分组并计数 (e.g., {Rank::Ten: 3, Rank::Ace: 1, Rank::Two: 1})
     let rank_counts: HashMap<Rank, usize> = cards.iter().map(|c| c.rank).counts();
-    
+
     // 获取 Rank 计数的列表 (e.g., [3, 1, 1] or [2, 2, 1])
     let mut counts: Vec<usize> = rank_counts.values().cloned().collect();
     counts.sort_unstable_by(|a, b| b.cmp(a)); // 倒序 [3, 1, 1]
@@ -102,7 +102,6 @@ pub fn identify_hand(cards: &[Card]) -> (PokerHand, Vec<Card>) {
     // 那么这就是一个 Flush。
     let is_flush = non_wild_suits.is_empty() || non_wild_suits.iter().all_equal();
     // --- 结束 Stage 2 更新 ---
-
 
     // --- 2. 牌型识别 (从高到低) ---
     // (这里的逻辑现在会正确地使用上面计算出的 `is_flush`)
