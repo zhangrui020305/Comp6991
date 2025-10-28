@@ -1,0 +1,2 @@
+window.ALL_CRATES = ["anstream","anstyle","anstyle_parse","anstyle_query","clap","clap_builder","clap_derive","clap_lex","colorchoice","either","enum_iterator","enum_iterator_derive","equivalent","hashbrown","heck","indexmap","is_terminal_polyfill","itertools","itoa","ortalab","ortalib","proc_macro2","quote","ryu","serde","serde_core","serde_derive","serde_yaml","strsim","syn","unicode_ident","unsafe_libyaml","utf8parse"];
+//{"start":21,"fragment_lengths":[10,10,16,16,7,15,14,11,14,9,16,23,13,12,7,11,23,12,7,10,10,14,8,6,8,13,15,13,9,6,16,17,12]}

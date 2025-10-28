@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"fn":["calculate_score"],"mod":["stage1_hand","stage3_jokers","stage4_helpers"]};

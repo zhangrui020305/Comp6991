@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"fn":["check_blackboard","check_flower_pot","get_raised_fist_mult"]};
